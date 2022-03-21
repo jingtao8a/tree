@@ -188,6 +188,7 @@ class RBTree{
 		RBNode* delete_maintain(RBNode* root)
 		{
 			if(C(root->lchild) == DOUBLE_BLACK && C(root) == RED && C(root->rchild) == BLACK){
+				if (root->lchild) root->lchild->color = BLACK;
 				if(C(root->rchild->lchild) == RED || C(root->rchild->lchild) == RED){
 					if(C(root->rchild->lchild) == RED){
 						root->rchild = right_rotate(root->rchild);
@@ -203,6 +204,7 @@ class RBTree{
 				return root;
 			}
 			if(C(root->rchild) == DOUBLE_BLACK && C(root) == RED && C(root->lchild) == BLACK){
+				if (root->rchild)	root->rchild->color = BLACK;
 				if(C(root->lchild->lchild) == RED || C(root->lchild->rchild) == RED){
 					if(C(root->lchild->rchild) == RED){
 						root->lchild = left_rotate(root->lchild);
@@ -219,6 +221,7 @@ class RBTree{
 			}
 
 			if(C(root->lchild) == DOUBLE_BLACK && C(root) == BLACK){
+				if (root->lchild) root->lchild->color = BLACK;
 				if(C(root->rchild) == RED){
 					root = left_rotate(root);
 					root->color = BLACK;
@@ -232,6 +235,7 @@ class RBTree{
 				return root;
 			}
 			if(C(root->rchild) == DOUBLE_BLACK && C(root) == BLACK){
+				if (root->rchild)	root->rchild->color = BLACK;
 				if(C(root->lchild) == RED){
 					root = right_rotate(root);
 					root->color = BLACK;
