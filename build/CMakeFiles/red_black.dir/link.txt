@@ -1,0 +1,1 @@
+/usr/bin/c++ -std=c++11 -g CMakeFiles/red_black.dir/src/red_black.cpp.o -o /home/yuxintao/tree/bin/red_black 
