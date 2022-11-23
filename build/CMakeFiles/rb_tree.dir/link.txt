@@ -1,1 +1,0 @@
-/usr/bin/c++ -std=c++11 -g CMakeFiles/rb_tree.dir/src/rb_tree.cpp.o -o /home/yuxintao/tree/bin/rb_tree 
