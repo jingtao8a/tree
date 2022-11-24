@@ -1,10 +1,10 @@
-#ifndef BINARY_SEARCH_TREE_HPP
-#define BINARY_SEARCH_TREE_HPP
+#ifndef AVL_TREE_HPP
+#define AVL_TREE_HPP
 
 #include <utility>
-#include <memory>
+#include <string>
 
-class BinarySearchTree {
+class AVLTree {
 public:
     struct Key_t {
         int key;
@@ -25,6 +25,7 @@ public:
         Node* parent;
         Node* leftChild;
         Node* rightChild;
+        int height;
         std::pair<Key_t, Value_t> data;
 
 
@@ -32,41 +33,41 @@ public:
         Node(const Key_t& key, const Value_t& value);
         void reset();
     };
+
 public:
-    BinarySearchTree();
-    ~BinarySearchTree();
+    AVLTree();
+    ~AVLTree();
     //查找
     bool search(const Key_t& key, Value_t *value=nullptr, Node **node=nullptr);
 
     //插入
     bool insert(const Key_t& key, const Value_t& value);
-    
-    //删除
-    bool remove(const Key_t& key);
 
-    //修改
-    bool update(const Key_t& key, const Value_t& value);
-    
     //显示树的形状
     void print();
 
 private:
-
+    //查找
     bool searchInSubTree(Node* root, const Key_t& key, Value_t *value, Node **node);
+    
+    //插入
+    void insertInSubTree(Node* root, const Key_t& key, const Value_t& value);
 
-    bool insertInSubTree(Node* root, const Key_t& key, const Value_t& value);
+    void maintainBalance(Node *root);
 
-    bool removeInSubTree(Node* root);
+    void updateHeight(Node *root);
 
-    void destroy(Node* root);
+    void rightRotate(Node *root);
+
+    void leftRotate(Node *root);
+
+    void destroy(Node *root);
 
     void print_node(Node *root);
 
     void output_impl(Node* n, bool left, const std::string& indent);
 
 private:
-    void maintainBalance(Node *root);
-
     Node *m_root;
     CmpKey m_cmpKey;
 };

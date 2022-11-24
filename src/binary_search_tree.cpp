@@ -231,16 +231,3 @@ void BinarySearchTree::destroy(Node *root) {
     destroy(root->leftChild);
     delete root;
 }
-
-void BinarySearchTree::inorder() {
-    _inorder(m_root);
-}
-
-void BinarySearchTree::_inorder(Node *root) {
-    if (!root) {
-        return;
-    }
-    std::cout << root->data.first.key << " ";
-    _inorder(root->leftChild);
-    _inorder(root->rightChild);
-}

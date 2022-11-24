@@ -17,5 +17,7 @@ add_executable(testbst test/testbst.cpp src/binary_search_tree.cpp)
 
 add_executable(geoperation test/geoperation.cpp)
 
+add_executable(testavl test/testavl.cpp src/avl_tree.cpp)
+
 set(CMAKE_CXX_FLAGS "-std=c++11 -g")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
