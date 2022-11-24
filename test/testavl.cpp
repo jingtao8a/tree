@@ -26,13 +26,13 @@ int main() {
             continue;
         }
 
-        // ret = sscanf(buffer, "remove %d", &key.key);
-        // if (ret == 1) {
-        //     std::cout << "remove " << key.key << std::endl;
-        //     tree.remove(key);
-        //     tree.print();
-        //     continue;
-        // }
+        ret = sscanf(buffer, "remove %d", &key.key);
+        if (ret == 1) {
+            std::cout << "remove " << key.key << std::endl;
+            tree.remove(key);
+            tree.print();
+            continue;
+        }
     }
     return 0;
 }

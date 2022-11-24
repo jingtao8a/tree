@@ -43,6 +43,12 @@ public:
     //插入
     bool insert(const Key_t& key, const Value_t& value);
 
+    //删除
+    bool remove(const Key_t& key);
+
+    //修改
+    bool update(const Key_t& key, const Value_t& value);
+
     //显示树的形状
     void print();
 
@@ -61,6 +67,10 @@ private:
 
     void leftRotate(Node *root);
 
+    //删除
+    void removeInSubTree(Node *root, const Key_t& key);
+
+    //销毁
     void destroy(Node *root);
 
     void print_node(Node *root);

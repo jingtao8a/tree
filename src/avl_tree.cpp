@@ -200,6 +200,100 @@ void AVLTree::leftRotate(Node *root) {
     updateHeight(p);
 }
 
+//删除
+bool AVLTree::remove(const Key_t& key) {
+    if ((search(key)) == false) {//不存在该节点
+        return false;
+    }
+    removeInSubTree(m_root, key);
+    return true;
+}
+
+void AVLTree::removeInSubTree(Node *root, const Key_t& key) {
+    int cmp = m_cmpKey(root->data.first, key);
+    if (cmp != 0) {
+        if (cmp > 0) {
+            removeInSubTree(root->leftChild, key);
+        } else {
+            removeInSubTree(root->rightChild, key);
+        }
+        updateHeight(root);
+        maintainBalance(root);
+    } else {
+        if (root->leftChild == nullptr && root->rightChild == nullptr) {//删除的是叶子节点
+            Node *parent = root->parent;
+            if (!parent) {//要删除的节点是根节点
+                delete m_root;
+                m_root = nullptr;
+                return;
+            }
+            if (parent->leftChild == root) {
+                parent->leftChild = nullptr;
+            } else {
+                parent->rightChild = nullptr;
+            }
+            delete root;
+            return;
+        }
+
+        if (root->leftChild && root->rightChild) {//有两个孩子
+            Node *nextNode = root->leftChild;
+            while (nextNode->rightChild) {
+                nextNode = nextNode->rightChild;
+            }
+            auto tmp = nextNode->data;
+            nextNode->data = root->data;
+            root->data = tmp;
+            removeInSubTree(root->leftChild, key);
+            updateHeight(root);
+            maintainBalance(root);
+            return;
+        }
+        //只有一个孩子
+        Node *parent = root->parent;
+
+        if (!parent) {//要删除的节点是根节点
+            if (m_root->leftChild) {//只有一个左孩子
+                m_root = m_root->leftChild;
+                m_root->parent = nullptr;
+            } else {//只有一个右孩子
+                m_root = m_root->rightChild;
+                m_root->parent = nullptr;
+            }
+            delete root;
+            updateHeight(m_root);
+            return;
+        }
+
+        if (root->leftChild) {//只有一个左孩子
+            if (parent->leftChild == root) {
+                parent->leftChild = root->leftChild;
+            } else {
+                parent->rightChild = root->leftChild;
+            }
+            root->leftChild->parent = parent;
+        } else {//只有一个右孩子
+            if (parent->leftChild == root) {
+                parent->leftChild = root->rightChild;
+            } else {
+                parent->rightChild = root->rightChild;
+            }
+            root->rightChild->parent = parent;
+        }
+
+        delete root;
+    }
+}
+
+//修改
+bool AVLTree::update(const Key_t& key, const Value_t& value) {
+    Node *node = nullptr;
+    if (search(key, nullptr, &node)) {
+        node->data.second = value;
+    }
+    return false;
+}
+
 //销毁二叉搜索树
 void AVLTree::destroy(Node *root) {
     if (!root) {
