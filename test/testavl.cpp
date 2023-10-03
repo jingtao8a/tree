@@ -8,7 +8,7 @@ int main() {
     AVLTree tree;
     AVLTree::Key_t key;
     AVLTree::Value_t value;
-    freopen("/home/yuxintao/tree/test/operation.txt", "r", stdin);
+    freopen("/home/jingtao8a/tree/test/operation.txt", "r", stdin);
     freopen("./log.txt", "w", stdout);
     while (true) {
         memset(buffer, 0, 1024);

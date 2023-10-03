@@ -4,7 +4,7 @@
 #include <time.h>
 
 int main() {
-    FILE *fp = fopen("/home/yuxintao/tree/test/operation.txt", "w");
+    FILE *fp = fopen("/home/jingtao8a/tree/test/operation.txt", "w");
     assert(fp);
     srand(time(NULL));
     

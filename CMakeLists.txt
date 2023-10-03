@@ -1,23 +1,9 @@
-cmake_minimum_required(VERSION 3.18)
-project("duckdb_study")
+cmake_minimum_required(VERSION 3.13)
+project("tree")
 
-add_executable(avl_tree src/old/avl_tree.cpp)
-
-add_executable(binary_search_tree src/old/binaray_search_tree.cpp)
-
-add_executable(create_btree src/old/create_btree.cpp)
-
-add_executable(rb_tree src/old/rb_tree.cpp)
-
-add_executable(red_black src/old/red_black.cpp)
-
-add_executable(testqueue test/testqueue.cpp)
-
-add_executable(testbst test/testbst.cpp src/binary_search_tree.cpp)
-
-add_executable(geoperation test/geoperation.cpp)
-
-add_executable(testavl test/testavl.cpp src/avl_tree.cpp)
-
-set(CMAKE_CXX_FLAGS "-std=c++11 -g")
+set(CMAKE_CXX_FLAGS "-std=c++14 -g")
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+add_subdirectory(src/old)
+add_subdirectory(test)
