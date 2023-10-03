@@ -1,4 +1,4 @@
-#include "../include/avl_tree.hpp"
+#include "avl_tree.hpp"
 #include <algorithm>
 #include <iostream>
 
